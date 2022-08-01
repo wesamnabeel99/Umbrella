@@ -36,13 +36,13 @@ object Client {
     }
 
     private fun buildHttpUrl() = HttpUrl.Builder()
-        .scheme("https")
+        .scheme(Constants.SCHEME)
         .host(Constants.BASE_URL)
-        .addPathSegments("data/2.5/forecast")
-        .addQueryParameter("appid", Constants.API_KEY)
-        .addQueryParameter("lat", Constants.IRAQ_LAT)
-        .addQueryParameter("lon", Constants.IRAQ_LON)
-        .addQueryParameter("units", Constants.UNITS)
+        .addPathSegments(Constants.PATH_SEGMENTS)
+        .addQueryParameter(Constants.QueryKeys.APP_ID, Constants.QueryValues.APP_ID)
+        .addQueryParameter(Constants.QueryKeys.LAT, Constants.QueryValues.IRAQ_LAT)
+        .addQueryParameter(Constants.QueryKeys.LON, Constants.QueryValues.IRAQ_LON)
+        .addQueryParameter(Constants.QueryKeys.UNITS, Constants.QueryValues.UNITS)
         .build()
 }
 
