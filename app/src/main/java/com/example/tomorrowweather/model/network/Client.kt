@@ -3,13 +3,14 @@ package com.example.tomorrowweather.model.network
 import android.util.Log
 import com.example.tomorrowweather.model.response.WeatherResponse
 import com.example.tomorrowweather.utils.Constants
+import com.google.gson.Gson
 import okhttp3.*
 import java.io.IOException
 
 object Client {
     private val okHttpClient = OkHttpClient()
 
-    lateinit var weatherResponse :WeatherResponse
+    lateinit var weatherResponse: WeatherResponse
 
 
     fun requestWeatherData(onSuccess: (isSuccess: Boolean) -> Unit) {
@@ -27,7 +28,7 @@ object Client {
 
             override fun onResponse(call: Call, response: Response) {
                 response.body?.string()?.let { jsonString ->
-                    Log.i("CLIENT", jsonString)
+                    weatherResponse = Gson().fromJson(jsonString, WeatherResponse::class.java)
                 }
                 onSuccess(true)
             }

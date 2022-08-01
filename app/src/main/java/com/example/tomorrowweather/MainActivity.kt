@@ -16,6 +16,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         repository.requestWeatherData() { isSuccess ->
             if (isSuccess) {
                 Log.i("MAIN_ACTIVITY", "done!")
+                Log.i("MAIN_ACTIVITY",repository.getWeatherData().toString())
             } else {
                 Log.i("MAIN_ACTIVITY", "failed")
             }
