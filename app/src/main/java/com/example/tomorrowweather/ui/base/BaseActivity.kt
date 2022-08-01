@@ -1,4 +1,4 @@
-package com.example.tomorrowweather.ui
+package com.example.tomorrowweather.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,14 +7,12 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
-    private lateinit var _binding: VB
     abstract val bindingInflater: (LayoutInflater) -> VB
-    protected val binding :VB
-        get() = _binding
+    lateinit var binding: VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = bindingInflater(layoutInflater)
-        setContentView(_binding.root)
+        binding = bindingInflater(layoutInflater)
+        setContentView(binding.root)
     }
 }
