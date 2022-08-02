@@ -7,7 +7,7 @@
 
     <color name="background_day_start_color">#5772FF</color>
     <color name="background_day_center_color">#25368E</color>
-    <color name="background_day_end_color">#1E1E20</color>
+    <color name="background_day_end_color">#4B4B5A</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
