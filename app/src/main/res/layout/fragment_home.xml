@@ -9,8 +9,7 @@
         android:id="@+id/success_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/night_time_background"
-        tools:visibility="gone">
+        android:background="@drawable/night_time_background">
 
         <ImageView
             android:id="@+id/search_button"
@@ -322,7 +321,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/loading_container"
-        android:background="@drawable/day_time_background">
+        android:background="@drawable/day_time_background"
+        tools:visibility="gone">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loading_lottie"
