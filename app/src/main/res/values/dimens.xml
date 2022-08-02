@@ -13,11 +13,13 @@
     <dimen name="margin_medium">24dp</dimen>
     <dimen name="margin_large">32dp</dimen>
     <dimen name="margin_huge">40dp</dimen>
+    <dimen name="margin_weather_symbol">80dp</dimen>
 
     <!--text sizes-->
     <dimen name="small_text_size">12sp</dimen>
     <dimen name="normal_text_size">14sp</dimen>
     <dimen name="medium_text_size">16sp</dimen>
+    <dimen name="large_text_size">20sp</dimen>
     <dimen name="temperature_text_size">64sp</dimen>
 
     <!--icon size-->

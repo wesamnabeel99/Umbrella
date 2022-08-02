@@ -2,15 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.TomorrowWeather" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/background_night_color</item>
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimary">@color/background_night_start_color</item>
+        <item name="colorPrimaryVariant">@color/background_night_center_color</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/background_day_color</item>
-        <item name="colorSecondaryVariant">@color/background_day_color</item>
+        <item name="colorSecondary">@color/background_day_start_color</item>
+        <item name="colorSecondaryVariant">@color/background_day_center_color</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/status_bar_color</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/background_night_center_color</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

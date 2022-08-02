@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.tomorrowweather.databinding.FragmentHomeBinding
 import com.example.tomorrowweather.model.repositories.WeatherRepositoryImpl
 import com.example.tomorrowweather.ui.base.BaseFragment
+import com.example.tomorrowweather.utils.Constants
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding = FragmentHomeBinding::inflate
@@ -17,8 +18,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         val repository = WeatherRepositoryImpl()
         repository.requestWeatherData() { isSuccess ->
             if (isSuccess) {
-                Log.i("HOME_FRAGMENT", "done!")
-                Log.i("HOME_FRAGMENT", repository.getWeatherData().timeStamps?.get(0).toString())
+                val response = repository.getWeatherData()
             } else {
                 Log.i("HOME_FRAGMENT", "failed")
             }

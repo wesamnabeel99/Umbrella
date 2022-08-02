@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background_night_color">#060813</color>
-    <color name="background_day_color">#5772FF</color>
-    <color name="background_scrondary_color">#424D87</color>
-    <color name="status_bar_color">#0D1335</color>
+
+    <color name="background_night_start_color">#060813</color>
+    <color name="background_night_center_color">#202645</color>
+    <color name="background_night_end_color">#1E1E1E</color>
+
+    <color name="background_day_start_color">#5772FF</color>
+    <color name="background_day_center_color">#25368E</color>
+    <color name="background_day_end_color">#1E1E20</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#D7D7D7</color>
