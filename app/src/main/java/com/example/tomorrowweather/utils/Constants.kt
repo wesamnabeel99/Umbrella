@@ -18,4 +18,9 @@ object Constants {
         const val IRAQ_LON = "44"
         const val UNITS = "metric"
     }
+
+    const val RECENT_TIMESTAMP = 0
+    const val FIRST_WEATHER_STATE = 0
+
+
 }

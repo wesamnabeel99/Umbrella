@@ -24,4 +24,5 @@
 
     <!--icon size-->
     <dimen name="icon_size">24dp</dimen>
+    <dimen name="error_text_size">24sp</dimen>
 </resources>

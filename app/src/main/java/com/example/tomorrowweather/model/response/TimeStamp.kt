@@ -16,7 +16,7 @@ data class TimeStamp(
     @SerializedName("visibility")
     val visibility: Int?,
     @SerializedName("pop")
-    val probability: Int?,
+    val probability: Double?,
     @SerializedName("sys")
     val timeOfTheDay: DayPart?,
     @SerializedName("dt_txt")

@@ -24,6 +24,7 @@ object Client {
         okHttpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.i("CLIENT", e.message.toString())
+                onSuccess(false)
             }
 
             override fun onResponse(call: Call, response: Response) {

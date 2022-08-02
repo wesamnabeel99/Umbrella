@@ -1,4 +1,4 @@
-package com.example.tomorrowweather
+package com.example.tomorrowweather.ui
 
 import android.view.LayoutInflater
 import com.example.tomorrowweather.databinding.ActivityMainBinding
