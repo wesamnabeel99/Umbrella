@@ -53,12 +53,11 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginTop="@dimen/margin_weather_symbol"
-            tools:src="@tools:sample/backgrounds/scenic"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/time"
-            />
+            tools:src="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/temperature_text_view"
@@ -74,7 +73,7 @@
             tools:text="36.7°" />
 
         <TextView
-            android:id="@+id/weather_condition_text_view"
+            android:id="@+id/weather_state_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="..."
@@ -94,7 +93,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.20"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weather_condition_text_view" />
+            app:layout_constraintTop_toBottomOf="@+id/weather_state_text_view" />
 
         <TextView
             android:id="@+id/humidity_category_text_view"
@@ -253,16 +252,17 @@
             tools:text="0%" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recycler_view"
-            tools:listitem="@layout/item_weather"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rain_value_text_view" /></androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/rain_value_text_view"
+            tools:listitem="@layout/item_weather" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/error_container"
@@ -328,9 +328,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loading_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/loading_container"
         android:background="@drawable/day_time_background"
         tools:visibility="gone">
 

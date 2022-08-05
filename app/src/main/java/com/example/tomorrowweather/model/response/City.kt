@@ -6,7 +6,7 @@ data class City(
     @SerializedName("id")
     val id: Int?,
     @SerializedName("name")
-    val countryName: String?,
+    val name: String?,
     @SerializedName("coord")
     val coordinates: Coordinates?,
     @SerializedName("country")

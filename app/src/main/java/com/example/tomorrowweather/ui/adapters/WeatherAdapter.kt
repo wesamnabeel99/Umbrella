@@ -20,18 +20,23 @@ class WeatherAdapter (private var timeStamps: List<TimeStamp>) :
     }
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
-        val currentTimeStamp = timeStamps.get(position)
-        val currentWeatherState = currentTimeStamp.weatherState
-        val currentWeatherIconId = currentWeatherState?.get(Constants.FIRST_WEATHER_STATE)?.weatherStateIcon
+        val currentTimeStamp = timeStamps[position]
+        val currentWeatherState = currentTimeStamp.weatherState?.get(Constants.FIRST_WEATHER_STATE)
+        val currentTemperature = currentTimeStamp.weatherInformation?.temperature.toString()
+        val currentDate = currentTimeStamp.dateText
+        val currentWeatherIconId = currentWeatherState?.weatherStateIcon
+        val currentTimeOfTheDay = currentTimeStamp.timeOfTheDay?.timeOfDay.toString()
         val currentWeatherIconUrl = "https://openweathermap.org/img/wn/${currentWeatherIconId}@2x.png"
+
         holder.binding.apply {
-            weatherIcon.loadImageUrl(currentWeatherIconUrl)
-            itemWeatherState.text = currentWeatherState?.get(Constants.FIRST_WEATHER_STATE)?.weatherState
-            temperature.text = currentTimeStamp.weatherInformation?.temperature.toString() + "°"
-            itemTime.text = currentTimeStamp.dateText
+            weatherIconImageView.loadImageUrl(currentWeatherIconUrl)
+            weatherStateTextView.text = currentWeatherState?.weatherState
+            temperatureTextView.text = currentTemperature + "°"
+            timeTextView.text = currentDate
+
             itemContainer.setBackgroundColorBasedOnTime(
                 context = this.root.context,
-                timeOfTheDay = currentTimeStamp.timeOfTheDay?.timeOfDay.toString(),
+                timeOfTheDay = currentTimeOfTheDay,
                 nightDrawableId = R.color.background_night_center_color,
                 dayDrawableId = R.color.background_day_center_color
             )

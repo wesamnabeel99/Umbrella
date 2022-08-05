@@ -8,7 +8,7 @@ data class TimeStamp(
     @SerializedName("main")
     val weatherInformation: WeatherInformation?,
     @SerializedName("weather")
-    val weatherState: List<WeatherCondition>?,
+    val weatherState: List<WeatherState>?,
     @SerializedName("clouds")
     val clouds: Cloud?,
     @SerializedName("wind")
