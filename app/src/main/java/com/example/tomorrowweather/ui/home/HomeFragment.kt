@@ -1,6 +1,7 @@
 package com.example.tomorrowweather.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,10 @@ import com.example.tomorrowweather.ui.base.BaseFragment
 import com.example.tomorrowweather.utils.Constants
 import com.example.tomorrowweather.utils.loadImageUrl
 import com.example.tomorrowweather.utils.setBackgroundColorBasedOnTime
+import com.example.tomorrowweather.utils.toDate
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding =
@@ -30,6 +35,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             if (isSuccess) {
                 val timeStamps = repository.getRecentTimeStamp()
                 val currentTimeStamp = timeStamps?.get(Constants.RECENT_TIMESTAMP)
+
                 activity?.runOnUiThread {
                     binding.loadingContainer.visibility = View.GONE
 
@@ -83,7 +89,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         val weatherStateIconUrl = "https://openweathermap.org/img/wn/${weatherIconId}@2x.png"
 
         binding.apply {
-            time.text = timeStamp?.dateText
+            time.text = timeStamp?.time!!.toDate()
             temperatureTextView.text = weatherInformation?.temperature.toString() + "°"
             humidityValueTextView.text = weatherInformation?.humidity.toString() + "%"
             weatherStateTextView.text = weatherState?.weatherState
