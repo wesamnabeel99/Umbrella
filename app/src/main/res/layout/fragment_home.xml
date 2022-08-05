@@ -48,17 +48,17 @@
             app:layout_constraintTop_toBottomOf="@+id/country_name"
             tools:text="Sunday 2 Aug 2022 - 02:00 AM" />
 
-        <com.airbnb.lottie.LottieAnimationView
+        <ImageView
             android:id="@+id/weather_symbol_animation"
-            android:layout_width="0dp"
+            android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginTop="@dimen/margin_weather_symbol"
+            tools:src="@tools:sample/backgrounds/scenic"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/time"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/weather_icon" />
+            />
 
         <TextView
             android:id="@+id/temperature_text_view"
@@ -252,7 +252,17 @@
             app:layout_constraintTop_toBottomOf="@+id/rain_category_text_view"
             tools:text="0%" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycler_view"
+            tools:listitem="@layout/item_weather"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rain_value_text_view" /></androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/error_container"
