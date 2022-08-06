@@ -13,10 +13,7 @@ import com.example.tomorrowweather.model.repositories.WeatherRepositoryImpl
 import com.example.tomorrowweather.model.response.TimeStamp
 import com.example.tomorrowweather.ui.adapters.WeatherAdapter
 import com.example.tomorrowweather.ui.base.BaseFragment
-import com.example.tomorrowweather.utils.Constants
-import com.example.tomorrowweather.utils.loadImageUrl
-import com.example.tomorrowweather.utils.setBackgroundColorBasedOnTime
-import com.example.tomorrowweather.utils.toDate
+import com.example.tomorrowweather.utils.*
 import org.eazegraph.lib.models.ValueLinePoint
 import org.eazegraph.lib.models.ValueLineSeries
 
@@ -29,7 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         super.onViewCreated(view, savedInstanceState)
         val repository = WeatherRepositoryImpl()
 
-        binding.errorContainer.visibility = View.GONE
+        binding.errorContainer.hide()
 
 
         repository.requestWeatherData() { isSuccess ->
@@ -38,8 +35,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 val currentTimeStamp = timeStamps?.get(Constants.RECENT_TIMESTAMP)
                 activity?.runOnUiThread {
                     Log.i("MAIN", "done")
-                    binding.loadingContainer.visibility = View.GONE
-                    Log.i("MAIN", "visibility gone")
+                    binding.loadingContainer.hide()
                     binding.countryName.text = repository.getCountryName()
 
                     bindDataIntoUi(currentTimeStamp)
@@ -52,6 +48,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                         nightDrawableId = R.drawable.night_time_background,
                         dayDrawableId = R.drawable.day_time_background
                     )
+
                     setTemperatureLineChart(
                         chart = binding.temperatureLineChart,
                         timeStamps = timeStamps!!,
@@ -60,9 +57,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             } else {
                 activity?.runOnUiThread {
-                    binding.successContainer.visibility = View.GONE
-                    binding.loadingContainer.visibility = View.GONE
-                    binding.errorContainer.visibility = View.VISIBLE
+                    binding.successContainer.hide()
+                    binding.loadingContainer.hide()
+                    binding.errorContainer.show()
 
                     Toast.makeText(
                         activity,
@@ -96,7 +93,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun setAdapter(timeStamps: List<TimeStamp>?) {
-        val adapter = timeStamps?.toList()?.let { WeatherAdapter(it) }
+        val adapter = timeStamps?.toList()?.let { timeStamps -> WeatherAdapter(timeStamps) }
         activity?.runOnUiThread {
             binding.recyclerView.adapter = adapter
         }

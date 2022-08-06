@@ -25,3 +25,11 @@ fun View.setBackgroundColorBasedOnTime(
 }
 
 fun Long.toDate() = Date(this * Constants.UNIX_TIMESTAMP_FACTOR).toLocaleString().removeSuffix(":00")
+
+fun View.hide() {
+    this.visibility = View.GONE
+}
+
+fun View.show() {
+    this.visibility = View.VISIBLE
+}
