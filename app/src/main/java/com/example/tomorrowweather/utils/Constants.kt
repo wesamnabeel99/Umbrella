@@ -21,6 +21,7 @@ object Constants {
 
     const val RECENT_TIMESTAMP = 0
     const val FIRST_WEATHER_STATE = 0
+    const val UNIX_TIMESTAMP_FACTOR = 1000L
 
 
 }

@@ -1,10 +1,12 @@
 package com.example.tomorrowweather.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.tomorrowweather.R
 import com.example.tomorrowweather.databinding.FragmentHomeBinding
 import com.example.tomorrowweather.model.repositories.WeatherRepositoryImpl
@@ -14,6 +16,10 @@ import com.example.tomorrowweather.ui.base.BaseFragment
 import com.example.tomorrowweather.utils.Constants
 import com.example.tomorrowweather.utils.loadImageUrl
 import com.example.tomorrowweather.utils.setBackgroundColorBasedOnTime
+import com.example.tomorrowweather.utils.toDate
+import org.eazegraph.lib.models.ValueLinePoint
+import org.eazegraph.lib.models.ValueLineSeries
+
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding =
@@ -31,8 +37,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 val timeStamps = repository.getRecentTimeStamp()
                 val currentTimeStamp = timeStamps?.get(Constants.RECENT_TIMESTAMP)
                 activity?.runOnUiThread {
+                    Log.i("MAIN", "done")
                     binding.loadingContainer.visibility = View.GONE
-
+                    Log.i("MAIN", "visibility gone")
                     binding.countryName.text = repository.getCountryName()
 
                     bindDataIntoUi(currentTimeStamp)
@@ -45,7 +52,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                         nightDrawableId = R.drawable.night_time_background,
                         dayDrawableId = R.drawable.day_time_background
                     )
-
+                    setTemperatureLineChart(
+                        chart = binding.temperatureLineChart,
+                        timeStamps = timeStamps!!,
+                        seriesColor = ContextCompat.getColor(requireContext(), R.color.temperature)
+                    )
                 }
             } else {
                 activity?.runOnUiThread {
@@ -63,6 +74,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
         }
 
+    }
+
+    private fun setTemperatureLineChart(
+        chart: org.eazegraph.lib.charts.ValueLineChart,
+        timeStamps: List<TimeStamp>,
+        seriesColor: Int,
+    ) {
+        val series = ValueLineSeries()
+        series.color = seriesColor
+
+        timeStamps.forEach {
+            series.addPoint(
+                ValueLinePoint(
+                    it.time?.toDate()!!.split(",")[0],
+                    it.weatherInformation?.temperature!!.toFloat()
+                )
+            )
+        }
+        chart.addSeries(series)
     }
 
     private fun setAdapter(timeStamps: List<TimeStamp>?) {
@@ -83,7 +113,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         val weatherStateIconUrl = "https://openweathermap.org/img/wn/${weatherIconId}@2x.png"
 
         binding.apply {
-            time.text = timeStamp?.dateText
+            time.text = timeStamp?.time!!.toDate()
             temperatureTextView.text = weatherInformation?.temperature.toString() + "°"
             humidityValueTextView.text = weatherInformation?.humidity.toString() + "%"
             weatherStateTextView.text = weatherState?.weatherState

@@ -10,6 +10,7 @@ import com.example.tomorrowweather.model.response.TimeStamp
 import com.example.tomorrowweather.utils.Constants
 import com.example.tomorrowweather.utils.loadImageUrl
 import com.example.tomorrowweather.utils.setBackgroundColorBasedOnTime
+import com.example.tomorrowweather.utils.toDate
 
 class WeatherAdapter (private var timeStamps: List<TimeStamp>) :
     RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
@@ -23,7 +24,7 @@ class WeatherAdapter (private var timeStamps: List<TimeStamp>) :
         val currentTimeStamp = timeStamps[position]
         val currentWeatherState = currentTimeStamp.weatherState?.get(Constants.FIRST_WEATHER_STATE)
         val currentTemperature = currentTimeStamp.weatherInformation?.temperature.toString()
-        val currentDate = currentTimeStamp.dateText
+        val currentDate =  currentTimeStamp.time!!
         val currentWeatherIconId = currentWeatherState?.weatherStateIcon
         val currentTimeOfTheDay = currentTimeStamp.timeOfTheDay?.timeOfDay.toString()
         val currentWeatherIconUrl = "https://openweathermap.org/img/wn/${currentWeatherIconId}@2x.png"
@@ -32,7 +33,7 @@ class WeatherAdapter (private var timeStamps: List<TimeStamp>) :
             weatherIconImageView.loadImageUrl(currentWeatherIconUrl)
             weatherStateTextView.text = currentWeatherState?.weatherState
             temperatureTextView.text = currentTemperature + "°"
-            timeTextView.text = currentDate
+            timeTextView.text = currentDate.toDate()
 
             itemContainer.setBackgroundColorBasedOnTime(
                 context = this.root.context,
